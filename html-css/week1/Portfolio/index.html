@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neepun Raj Shrestha</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+   
+    <header class="main-header container " id="hero">
+        <div class="logo" >
+          <img src="./img/logo.png" alt="Logo" class="logo-img" />
+        </div>
+        <nav class="nav-header">
+          <ul class="nav-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contacts">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    <main>
+        
+      <section class="hero container ">
+        <h1>Transform <br />Your Idea into <br />Action</h1>
+        <p>Hi, I am Neepun Raj your next Software Engineer</p>
+        <h2>Full Stack Developer</h2>
+      </section>
+
+      <section class="about" id="about">
+        <h2 class="about__heading section-heading">About</h2>
+        <div class="about__content">
+            <!-- div 1  profile and pic-->
+            <div class="profile">
+                <div class="profile__picture">
+                    <img src="./img/neepun.jpg" alt="Neepun Raj"  />
+                </div>
+                <p class="profile__blurb">Fully committed to the philosophy of life-long learning, I’m a full stack developer with a deep passion for JavaScript,Typescript, React, React-Native, NextJS and all things web development. The unique combination of creativity, logic, technology and never running out of new things to discover, drives my excitement and passion for web development. When I’m not at my computer I like to spend my time reading, keeping fit and playing guitar.</p>
+            </div>
+   <!-- div 2 skills div -->
+          <div class="skills">
+            <div class="skills__row">
+              <div class="skills__item  ">
+                <img src="./img/html.png" alt="html" />
+                <div class="skills__item-name">HTML</div>
+              </div>
+              <div class="skills__item ">
+                <img src="./img/react.png" alt="" />
+                <div class="skills__item-name">REACT</div>
+              </div>
+              <div class="skills__item  ">
+                <img src="./img/express.png" alt="" />
+                <div class="skills__item-name">EXPRESS.JS</div>
+              </div>
+            </div>
+            <div class="skills__row">
+              <div class="skills__item  ">
+                <img src="./img/javascript.png" alt="" />
+                <div class="skills__item-name">JAVASCRIPT</div>
+              </div>
+              <div class="skills__item  ">
+                <img src="./img/css.png" alt="" />
+                <div class="skills__item-name">CSS</div>
+              </div>
+              <div
+                class="skills__item  "
+              >
+                <img src="./img/mongodb.png" alt="" />
+                <div class="skills__item-name">MONGODB</div>
+              </div>
+              <div class="skills__item  ">
+                <img src="./img/git.png" alt="scss" />
+                <div class="skills__item-name">GIT</div>
+              </div>
+            </div>
+            <div class="skills__row">
+              <div class="skills__item  ">
+                <img src="./img/sass.png" alt="" />
+                <div class="skills__item-name">SASS</div>
+              </div>
+              <div
+                class="skills__item  "
+              >
+                <img src="./img/nextjs.png" alt="" />
+                <div class="skills__item-name">NEXT.JS</div>
+              </div>
+              <div class="skills__item  ">
+                <img src="img/nodejs.png" alt="" />
+                <div class="skills__item-name">NODE.JS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects" id="projects">
+        <h2 class="projects__heading section-heading">Projects</h2>
+        <div class="project project-left">
+          <a href="#">
+            <div class="project__image-container weather">
+              <div class="project__image-image">
+                <img src="./img/learningApp.png" alt="" />
+              </div>
+              </div>
+            </a>
+          <div class="project__info">
+            <h3 class="project__title">AI-Learner<br />Learning App</h3>
+            <p class="project__description">
+              Full stack e-learning web App built with React, Node.js,
+              Express.js, MongoDB.
+            </p>
+            <a href="#" target="_blank">
+                <div class="project__live-2">Live app</div>
+                </a>
+                <a href="https://github.com/neepunraj">
+                    <div class="project__live-2">learn more</div>
+                    </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- contect section -->
+    <section class="contact" id="contacts">
+        <h2 class="contact__heading section-heading">
+            Contact
+        </h2>
+        <p class="contact_text">
+            Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.
+        </p>
+        <form class="contact_form" action="" method="post">
+            <input class="contact__form-name" name="name" placeholder="Name"/>
+            <input class="contact__form-email" type="email" name="_replyto" placeholder="Email"/>
+            <textarea class="contact__form-message" name="message" placeholder="Message"></textarea>
+                <div class="form-error">
+                    <div class="form-error__name">Pleas Enter Your Name</div>
+                    <div class="form-error__email">Please Enter valid Email Address</div>
+                    <div class="form-error__msg">Please Enter a Message</div>
+                </div>
+                <button class="contact__form-submit" id="form-submit" type="submit">
+                    Submit
+                </button>
+        </form>
+
+
+    </section>
+
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <a href="#hero">
+        <div class="return-home">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            viewBox="0 0 24 24"
+          >
+            <title></title>
+            <path
+              fill="#fafafa"
+              d="M17.707 10.293l-5-5c-0.391-0.391-1.024-0.391-1.414 0l-5 5c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l4.293-4.293 4.293 4.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414zM17.707 17.293l-5-5c-0.391-0.391-1.024-0.391-1.414 0l-5 5c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l4.293-4.293 4.293 4.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414z"
+            ></path>
+          </svg>
+          </div
+      ></a>
+
+      <div class="socials">
+        <a href="https://github.com/neepunraj" target="_blank">
+          <div class="socials__github">
+            <img src="img/github.png" alt=""/>
+        </div>
+        </a>
+        <a href="https://www.linkedin.com/in/neepunrajshrestha/" target="_blank">
+            <div class="socials__linkedin">
+              <img src="img/icons8-linkedin-100.png" alt=""/>
+          </div>
+          </a>
+        <a href="mailto:neepunraj8@gmail.com" target="_blank" >
+            <div class="socials__email">
+            <img src="img/mail.png" alt=""/>
+            </div>
+    </a>
+      </div>
+
+      <p class="copyright">Neepun Raj  &copy; 2025</p>
+    </footer>
+
+  </body>
+</html>
