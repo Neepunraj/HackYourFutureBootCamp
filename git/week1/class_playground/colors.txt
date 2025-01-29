@@ -1,4 +1,4 @@
-purpl
+purple
 green
 red
 yellow
