@@ -25,8 +25,7 @@ const seconWords = [
 ];
 
 function getRandomNumber() {
-  const randomNumber = Math.floor(Math.random() * 10);
-  return randomNumber;
+  return Math.floor(Math.random() * 10);
 }
 const startupName =
   firstWords[getRandomNumber()] + seconWords[getRandomNumber()];
