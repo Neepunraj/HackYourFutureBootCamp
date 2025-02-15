@@ -1,7 +1,7 @@
 let class07Students = [];
 // asumming studentName always starts with Capital letter to avoid toLowerCase()
 function addNewStudentToClass(studentName) {    
-if(studentName === ""){
+if(!studentName) {
     console.log("Please Enter a valid Name");
 }else if (class07Students.includes(studentName)) {
     console.log("Student " + studentName + " is already in the class")
