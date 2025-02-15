@@ -23,8 +23,9 @@ function getFullNameVersion3(
   useFormalName = false,
   gender = "male"
 ) {
-  if (!firstName || !surName)
-    return "Please Dont forget to write your First Name and SurName";
+  if (!firstName || !surName) {
+        return "Please Dont forget to write your First Name and SurName";
+    }
   const fullName = `${firstName} ${surName}`;
   if (useFormalName) {
     return gender.toLowerCase() === "female" ? `Lady ${fullName}` : `Lord ${fullName}`;
