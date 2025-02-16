@@ -39,9 +39,7 @@ function convertDate(dateString) {
 
 const dateString = "1994-03-21";
 
-console.log(
-  `Revered Date for  ${dateString}  is  ${convertDate(dateString)}`
-);
+console.log(`Revered Date for  ${dateString}  is  ${convertDate(dateString)}`);
 
 //using split reverse and join
 function newDateConversion(dateString) {

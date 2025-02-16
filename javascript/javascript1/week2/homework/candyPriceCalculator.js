@@ -16,7 +16,6 @@ function addCandy(candyType, candyWeight) {
   PurchasedCandyPriceList.push(price);
 }
 
-
 /* calculating total candy price */
 console.log("Purchased Candy Price List " + PurchasedCandyPriceList);
 function totalAmountSpent() {

@@ -12,7 +12,9 @@ console.log(fullName2);
 
 //usig new concept for if else in single line using ternary operator
 function getFullNameVersion2(firstName, surName, useFormalName) {
-return useFormalName?  `Lord ${firstName} ${surName}` : `${firstName} ${surName}`;
+  return useFormalName
+    ? `Lord ${firstName} ${surName}`
+    : `${firstName} ${surName}`;
 }
 console.log(getFullNameVersion2("Benjamin", "Hughes", true));
 
@@ -24,13 +26,15 @@ function getFullNameVersion3(
   gender = "male"
 ) {
   if (!firstName || !surName) {
-        return "Please Dont forget to write your First Name and SurName";
-    }
+    return "Please Dont forget to write your First Name and SurName";
+  }
   const fullName = `${firstName} ${surName}`;
   if (useFormalName) {
-    return gender.toLowerCase() === "female" ? `Lady ${fullName}` : `Lord ${fullName}`;
+    return gender.toLowerCase() === "female"
+      ? `Lady ${fullName}`
+      : `Lord ${fullName}`;
   }
   return fullName;
 }
 console.log(getFullNameVersion3("Annapurna", "Himal", true, "Female"));
-console.log(getFullNameVersion3("Sagar", "Matha", true,"male"));
+console.log(getFullNameVersion3("Sagar", "Matha", true, "male"));
