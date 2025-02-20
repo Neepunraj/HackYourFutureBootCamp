@@ -138,3 +138,62 @@ function logOutNotesFormatted() {
   });
 }
 logOutNotesFormatted();
+
+console.log("**************");
+/* Activity cheker and show status part 5 */
+
+const activities = [];
+const limit = 100;
+function addActivity(date, activity, duration) {
+  activities.push({
+    date: date,
+    activity: activity,
+    duration: duration,
+  });
+}
+addActivity("23-08-19", "Youtube", 30);
+addActivity("23-08-19", "Tiktok", 40);
+addActivity("23-08-19", "DuoLingo", 50);
+
+console.log(activities);
+
+function showStatus(activities) {
+  if (activities.length == 0 || activities === "undefined") {
+    console.error(
+      "No Activities Recorded Please Add some activities before calling showStatus"
+    );
+  } else {
+    const totalDuration = activities.reduce(
+      (total, item) => total + item.duration,
+      0
+    ); //using reduce Method to get total sum
+    console.log("you have used " + totalDuration + " mintus  for Smart phone");
+    if (totalDuration >= limit) {
+      console.log(
+        "You have use more time and reached limit , You have used  " +
+          totalDuration +
+          " minutes for today , please take some fresh air"
+      );
+    }
+  }
+}
+function findLongestActivity(activities) {
+  if (activities.length == 0 || activities === "undefined") {
+    console.error(
+      "No Activities Recorded Please Add some activities before calling showStatus"
+    );
+  } else {
+    let longestActivity = activities[0];
+    for (let i = 0; i < activities.length; i++) {
+      if (activities[i].duration > longestActivity.duration) {
+        longestActivity = activities[i];
+      }
+    }
+    return longestActivity;
+  }
+}
+showStatus(activities);
+const { activity, duration } = findLongestActivity(activities);
+console.log(
+  `You have used Maximum time in ${activity} and you used ${duration} minuts for this activity`
+);
