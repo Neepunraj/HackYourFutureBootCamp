@@ -203,94 +203,143 @@ function findFastesRecipe() {
       lowest = timing;
     }
   }
- 
- return recepieList.find(item=> item.timing === lowest);//filter will return array, find will return the object in array
 
-
+  return recepieList.find((item) => item.timing === lowest); //filter will return array, find will return the object in array
 }
 const fasterRecipe = findFastesRecipe();
-console.log(fasterRecipe)
-console.log(`the fastes recipe is ${fasterRecipe.name}, timing is ${fasterRecipe.timing}`)
+console.log(fasterRecipe);
+console.log(
+  `the fastes recipe is ${fasterRecipe.name}, timing is ${fasterRecipe.timing}`
+);
 
-const ingredients= ["spagetti","olive oil","cucumber","garlic"]
-function getRecipeBasedOnIngredinets(ingredientList){
-    const findRecipie = []
-    const getIngredients = recepieList.forEach(recipe => {
-        console.log(recipe.ingredients)
-        for(let i= 0;i<ingredientList.length;i++){
-            if(findRecipie.includes(recipe)){
-                return //checking scenrario if there is already ingredients to avoid repetive push
-            }else if(recipe.ingredients.includes(ingredientList[i])){
-                findRecipie.push(recipe)
-            }
-
-        }
-        console.log(findRecipie)
-       
-       });
-  
-   
-
+const ingredients = ["spagetti", "olive oil", "cucumber", "garlic"];
+function getRecipeBasedOnIngredinets(ingredientList) {
+  const findRecipie = [];
+  const getIngredients = recepieList.forEach((recipe) => {
+    console.log(recipe.ingredients);
+    for (let i = 0; i < ingredientList.length; i++) {
+      if (findRecipie.includes(recipe)) {
+        return; //checking scenrario if there is already ingredients to avoid repetive push
+      } else if (recipe.ingredients.includes(ingredientList[i])) {
+        findRecipie.push(recipe);
+      }
+    }
+    console.log(findRecipie);
+  });
 }
-getRecipeBasedOnIngredinets(ingredients)
+getRecipeBasedOnIngredinets(ingredients);
 
-console.log("Review Amazons Code ")
+console.log("Review Amazons Code ");
 
 function filterItems(itemsTobeShipped) {
-    let boxToBeShipped = [];
-    for (let i = 0; i < itemsTobeShipped.length; i++) {
-        if (itemsTobeShipped[i].price < 30 && itemsTobeShipped[i].inStock) {
-            if (itemsTobeShipped[i].price < 20) {
-                let itemToBePacked = itemsTobeShipped[i].item;
-                boxToBeShipped.push(itemToBePacked);
-            }
-        }
+  let boxToBeShipped = [];
+  for (let i = 0; i < itemsTobeShipped.length; i++) {
+    if (itemsTobeShipped[i].price < 30 && itemsTobeShipped[i].inStock) {
+      if (itemsTobeShipped[i].price < 20) {
+        let itemToBePacked = itemsTobeShipped[i].item;
+        boxToBeShipped.push(itemToBePacked);
+      }
     }
-    if (boxToBeShipped.length === 0) {
-        return [];
-    }
+  }
+  if (boxToBeShipped.length === 0) {
+    return [];
+  }
 
-    return boxToBeShipped;
+  return boxToBeShipped;
 }
 
 let shipitems = [
-    { item: "Apple", price: 1.5, inStock: true },
-    { item: "Laptop", price: 999.99, inStock: true },
-    { item: "T-shirt", price: 15, inStock: false },
-    { item: "Bananas", price: 2, inStock: true },
-    { item: "Headphones", price: 25, inStock: true }
+  { item: "Apple", price: 1.5, inStock: true },
+  { item: "Laptop", price: 999.99, inStock: true },
+  { item: "T-shirt", price: 15, inStock: false },
+  { item: "Bananas", price: 2, inStock: true },
+  { item: "Headphones", price: 25, inStock: true },
 ];
 
-console.log(filterItems(shipitems)); 
+console.log(filterItems(shipitems));
 // Expected Output: ["Apple", "Bananas"]
 
-
-console.log("Handeling Errors")
+console.log("Handeling Errors");
 function logOnlySmallNumbers(number) {
-    // make this function throw an error if the number is higher than 100
-    // otherwise log the number
-       if(number>100){
-        throw new Error (`${number} is greater than 100 `)
-       }
-       console.log(number, " is less than 100")
-    
+  // make this function throw an error if the number is higher than 100
+  // otherwise log the number
+  if (number > 100) {
+    throw new Error(`${number} is greater than 100 `);
+  }
+  console.log(number, " is less than 100");
 }
 
 function logSmallNumbers(numbers) {
-    // make sure this method logs all the small numbers by handling any errors
-    for (const number of numbers) {
-       
-        try{
-            logOnlySmallNumbers(number);
-       
-
-        }catch(error){
-            console.log("Error Occured "+ error)
-        }
-    
-    }    
-    
+  // make sure this method logs all the small numbers by handling any errors
+  for (const number of numbers) {
+    try {
+      logOnlySmallNumbers(number);
+    } catch (error) {
+      console.log("Error Occured " + error);
+    }
+  }
 }
 
 logSmallNumbers([40, 150, 9999, 20, -10, 3000]);
 
+console.log("Implementing Shopping Cart");
+
+function createVisitor(name, age, height, hasPass) {
+  return { name, age, height: height, hasPass };
+}
+const visitorsList = [];
+const visitor1 = createVisitor("Neepun", 30, 170, false);
+visitorsList.push(visitor1);
+
+function calculateTicketPrice(visitor) {
+  let price = 0;
+  if (visitor.hasPass) {
+    price = 0;
+  } else {
+    if (visitor.age < 12) {
+      price = 10;
+    } else if (visitor.age >= 12 && visitor.age <= 17) {
+      price = 15;
+    } else {
+      price = 20;
+    }
+  }
+  return price;
+}
+const priceforVisitor1 = calculateTicketPrice(visitorsList[0]);
+console.log(priceforVisitor1);
+
+function canRide(visitor, minHeight) {
+  return visitor.height >= minHeight
+    ? console.log("Yes! you can ride," + visitor.name)
+    : console.log("NO! You cannot Ride, " + visitor.name);
+}
+canRide({ name: "Alice", height: 140 }, 120); // true
+canRide({ name: "Bob", height: 110 }, 120); // false
+visitorsList.push(createVisitor("Sagarmatha", 20, 140, false));
+visitorsList.push(createVisitor("AnnaPurna", 12, 100, false));
+visitorsList.push(createVisitor("AmaYAngri", 17, 120, false));
+visitorsList.push(createVisitor("MachhaPucchere", 30, 140, false));
+visitorsList.push(createVisitor("Vintuna", 11, 90, false));
+
+console.log(visitorsList);
+function calculateTotalRevenu(visitorsList) {
+  let totalRevenue = 0;
+  visitorsList.forEach((eachVisitor) => {
+    totalRevenue += calculateTicketPrice(eachVisitor);
+  });
+  return totalRevenue;
+}
+const totalRevenueCheck = calculateTotalRevenu(visitorsList);
+console.log("This year the total revenue is " + totalRevenueCheck);
+function displayVisitorInfo(visitor) {
+  const ticketPrice = calculateTicketPrice(visitor);
+  const { name, age, height } = visitor;
+  console.log(
+    `Name: ${name} | Age: ${age} | Height: ${height}cm | Ticket Price: ${ticketPrice}`
+  );
+}
+
+visitorsList.forEach((eachVisitor) => {
+  displayVisitorInfo(eachVisitor);
+});
