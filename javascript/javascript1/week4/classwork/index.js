@@ -293,16 +293,14 @@ visitorsList.push(visitor1);
 
 function calculateTicketPrice(visitor) {
   let price = 0;
-  if (visitor.hasPass) {
-    price = 0;
+  const { age, hasPass } = visitor;
+  if (hasPass) return 0;
+  if (age < 12) {
+    price = 10;
+  } else if (age <= 17) {
+    price = 15;
   } else {
-    if (visitor.age < 12) {
-      price = 10;
-    } else if (visitor.age >= 12 && visitor.age <= 17) {
-      price = 15;
-    } else {
-      price = 20;
-    }
+    price = 20;
   }
   return price;
 }
