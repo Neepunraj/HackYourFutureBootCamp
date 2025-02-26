@@ -152,3 +152,24 @@ numbers[0] += 3;
 numbers[2] *= 3;
 console.log(doStuff([2, 4, 6])); // Nan???
 /* because there is no add and that means sum be zero and count also and any number divisible by zero will give NAN */
+
+/* isprime Check */
+function isPrime(number) {
+  if (number <= 1) return false;
+  if (number === 2 || number === 3) return true;
+  if (number % 2 === 0 || number % 3 === 0) return false;
+  for (let i = 5; i * i <= number; i = i + 6) {
+    if (number % i || number % (i + 2) === 0) return false;
+  }
+  return true;
+}
+console.log(isPrime(7)); // true
+console.log(isPrime(10)); // false
+console.log(isPrime(29));
+
+function factorial(number) {
+  if (number <= 0) return 1;
+  return number * factorial(number - 1); /* recusrive function */
+}
+console.log(factorial(5));
+console.log(factorial(7));
