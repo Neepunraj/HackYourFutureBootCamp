@@ -117,9 +117,7 @@ function getNote(id) {
   if (typeof id !== "number" || typeof id === "undefined") {
     console.error("Error Id cannot be undefined and id has to be number");
     return "Error Occured!";
-  } else {
-    return notes.filter((item) => item.id === id); //used filter MEthod
-  }
+  return notes.filter((item) => item.id === id);
 }
 const firstNote = getNote(1);
 const secondNote = getNote(2);
