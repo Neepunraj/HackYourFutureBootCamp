@@ -145,11 +145,7 @@ console.log("**************");
 const activities = [];
 const limit = 100;
 function addActivity(date, activity, duration) {
-  activities.push({
-    date: date,
-    activity: activity,
-    duration: duration,
-  });
+  activities.push({ date, activity, duration });
 }
 addActivity("23-08-19", "Youtube", 30);
 addActivity("23-08-19", "Tiktok", 40);
