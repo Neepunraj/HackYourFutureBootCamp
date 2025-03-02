@@ -152,7 +152,7 @@ addActivity("23-08-19", "DuoLingo", 50);
 console.log(activities);
 
 function showStatus(activities) {
-  if (activities.length == 0 || activities === "undefined") {
+  if (!activities.length || activities === "undefined") {
     console.error(
       "No Activities Recorded Please Add some activities before calling showStatus"
     );
