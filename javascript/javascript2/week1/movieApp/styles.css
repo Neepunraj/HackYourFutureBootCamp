@@ -1,0 +1,39 @@
+#root {
+  margin: 0 auto;
+}
+.headerContainer {
+  height: 100;
+  width: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0 10px;
+}
+.hederUl {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.heroSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.heroImage {
+  height: 300px;
+  width: 300px;
+}
+.childDiv {
+  position: absolute;
+  margin-top: 30px;
+  gap: 10px;
+  padding: 10px;
+}

@@ -82,3 +82,17 @@ button.addEventListener("click", () => {
 });
 
 document.body.appendChild(button);
+const formDiv = document.querySelector(".box");
+const firstName = document.createElement("h2");
+const secondNAme = document.createElement("h2");
+formDiv.appendChild(firstName);
+formDiv.appendChild(secondNAme);
+const form = formDiv.querySelector("form");
+form.addEventListener("change", (event) => {
+  console.log(event);
+  event.preventDefault();
+  const firstNameInput = form.querySelector("#firstNameInput");
+  firstName.innerText = firstNameInput.value;
+  const secondNameInput = form.querySelector("#secondNameInput");
+  secondNAme.innerText = secondNameInput.value;
+});
