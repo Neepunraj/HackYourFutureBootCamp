@@ -331,7 +331,7 @@ movieList.forEach((movie) => {
   movieDescription.innerText = movie.description;
   detailsDiv.appendChild(movieDescription);
   const averageRating = document.createElement("p");
-  averageRating.innerText = `Current Rating : ${movie.rating}/5`;
+  averageRating.innerText = `Current Rating: ${movie.rating}/5`;
   detailsDiv.appendChild(averageRating);
 
   /* rating */
@@ -370,7 +370,7 @@ movieList.forEach((movie) => {
         const tempIcon = ratingsDiv.children[j];
         tempIcon.style.color = j < currentRating ? "yellow" : "gray";
       }
-      averageRating.innerText = `${movie.rating}/5`;
+      averageRating.innerText = `Current Rating: ${movie.rating}/5`;
     });
   }
 
