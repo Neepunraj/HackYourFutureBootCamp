@@ -331,7 +331,7 @@ movieList.forEach((movie) => {
   movieDescription.innerText = movie.description;
   detailsDiv.appendChild(movieDescription);
   const averageRating = document.createElement("p");
-  averageRating.innerText = `${movie.rating}`;
+  averageRating.innerText = `Current Rating : ${movie.rating}/5`;
   detailsDiv.appendChild(averageRating);
 
   /* rating */
