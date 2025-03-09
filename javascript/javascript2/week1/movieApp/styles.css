@@ -25,15 +25,40 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 300px;
+  border: 2px solid green;
+  position: relative;
 }
 .heroImage {
-  height: 300px;
+  height: auto;
   width: 300px;
 }
-.childDiv {
+
+.YearTitleContainer {
+  padding: 0 5px 0 5px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(70, 25, 25, 0.5);
+  color: whitesmoke;
+  bottom: -60px;
+  width: 290px;
+}
+.detailsDiv {
+  display: none;
+  padding: 0 10px 0 15px;
   position: absolute;
-  margin-top: 30px;
-  gap: 10px;
-  padding: 10px;
+  bottom: 0;
+  background-color: rgba(70, 25, 25, 0.8);
+  left: 0;
+}
+.detailsDiv.visible {
+  display: flex;
+  flex-direction: column;
+}
+.ratingsContainer {
+  margin-top: -10px;
 }
