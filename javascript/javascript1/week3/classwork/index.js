@@ -6,26 +6,28 @@ function findLongest(str) {
     if (spl[i].length > longest) {
       longest = spl[i].length;
     }
-    
   }
   return longest;
 }
 console.log(findLongest("The quick white fox jumped around the massive dog"));
 
-
-const friendsList = [{
-    username: 'David',
-    status: 'online',
-    lastActivity: 10
-  }, {
-    username: 'Lucy', 
-    status: 'offline',
-    lastActivity: 22
-  }, {
-    username: 'Bob', 
-    status: 'online',
-    lastActivity: 104
-  }]
+const friendsList = [
+  {
+    username: "David",
+    status: "online",
+    lastActivity: 10,
+  },
+  {
+    username: "Lucy",
+    status: "offline",
+    lastActivity: 22,
+  },
+  {
+    username: "Bob",
+    status: "online",
+    lastActivity: 104,
+  },
+];
 /* 
 {
   offline: ['Lucy'],
@@ -34,39 +36,29 @@ const friendsList = [{
 
 */
 
-  const whosOnline = (friends) => {
-    console.log(friends[0].lastActivity)
-    const newArray = []
-    let status = {
-        online:[],
-        offline:[],
-        away:[]
+const whosOnline = (friends) => {
+  console.log(friends[0].lastActivity);
+  const newArray = [];
+  let status = {
+    online: [],
+    offline: [],
+    away: [] /*  */,
+  };
+  for (let i = 0; i < friends.length; i++) {
+    const friend = friends[i];
+
+    if (friend.status === `online`) {
+      if (friend.lastActivity < 10) {
+        status.offline.push(friend.username);
+      } else if (friend.lastActivity > 10) {
+        status.offline.push(friend.username);
+      }
+    } else if (friend.status === "away") {
+      status.away.push(friend.username);
     }
-    for(let i = 0; i<friends.length;i++){
-    
-        const friend = friends[i]
-
-
-        if(friend.status === `online` ){
-            if(friend.lastActivity<10){
-                status.offline.push(friend.username)
-
-
-            }else if (friend.lastActivity>10) {
-                status.offline.push(friend.username)
-
-            }
-           
-        }else if(friend.status === "away"){
-            status.away.push(friend.username)
-        }
-
-      
-    
-    }
-    console.log(newArray)
- return status
-
   }
+  console.log(newArray);
+  return status;
+};
 
-  console.log(whosOnline(friendsList))
+console.log(whosOnline(friendsList));

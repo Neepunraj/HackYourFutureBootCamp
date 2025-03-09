@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+}
+button {
+  font-size: 24px;
+  background-color: #117ceb;
+  color: #ffffff;
+  border-radius: 10px;
+  border-color: transparent;
+}
+img {
+  margin-top: 10px;
+}

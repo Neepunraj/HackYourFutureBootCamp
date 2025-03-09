@@ -1,0 +1,64 @@
+#root {
+  margin: 0 auto;
+}
+.headerContainer {
+  height: 100;
+  width: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0 10px;
+}
+.hederUl {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.heroSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 300px;
+  border: 2px solid green;
+  position: relative;
+}
+.heroImage {
+  height: auto;
+  width: 300px;
+}
+
+.YearTitleContainer {
+  padding: 0 5px 0 5px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(70, 25, 25, 0.5);
+  color: whitesmoke;
+  bottom: -60px;
+  width: 290px;
+}
+.detailsDiv {
+  display: none;
+  padding: 0 10px 0 15px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(70, 25, 25, 0.8);
+  left: 0;
+}
+.detailsDiv.visible {
+  display: flex;
+  flex-direction: column;
+}
+.ratingsContainer {
+  margin-top: -10px;
+}
