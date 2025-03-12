@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
 }
+/* header */
 .headerContainer {
   height: 100;
   width: 100;
@@ -14,6 +15,43 @@
   display: flex;
   gap: 10px;
 }
+/* sort by category */
+.stickyCategory {
+  overflow-x: auto;
+  width: 100%;
+  padding: 10;
+}
+.stickyCategory::-webkit-scrollbar {
+  display: none;
+}
+.categoryUl {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  scroll-behavior: smooth;
+  padding-right: 10px;
+
+  align-items: center;
+  text-align: center;
+}
+.categoryUl li {
+  white-space: nowrap;
+  padding: 10px;
+  background-color: rgba(70, 25, 25, 0.8);
+  color: white;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.categoryUl li:hover {
+  cursor: pointer;
+  color: rgb(237, 190, 190);
+  transform: scale(1.1);
+}
+.categoryUl li.active {
+  cursor: pointer;
+  color: rgb(237, 190, 190);
+}
+/* herosection */
 .heroSection {
   display: flex;
   flex-wrap: wrap;
@@ -22,20 +60,38 @@
   justify-content: center;
   align-items: center;
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+/* for each card */
 .cardContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   width: 300px;
-  border: 2px solid green;
+  border: 1px solid green;
   position: relative;
+  transition: all 1.2s ease-in-out;
 }
+
 .heroImage {
   height: auto;
   width: 300px;
 }
-
+/* Year title and price div */
 .YearTitleContainer {
   padding: 0 5px 0 5px;
   flex-wrap: wrap;
@@ -47,6 +103,7 @@
   bottom: -60px;
   width: 290px;
 }
+/* details div */
 .detailsDiv {
   display: none;
   padding: 0 10px 0 15px;
@@ -55,6 +112,7 @@
   background-color: rgba(70, 25, 25, 0.8);
   left: 0;
 }
+
 .detailsDiv.visible {
   display: flex;
   flex-direction: column;
@@ -66,6 +124,7 @@
   gap: 3px;
   margin-bottom: 4px;
 }
+/* for ratings */
 .ratingsContainer i {
   margin-top: -10px;
   color: gray;

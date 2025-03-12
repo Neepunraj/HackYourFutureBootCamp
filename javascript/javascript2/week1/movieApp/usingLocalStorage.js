@@ -1,4 +1,4 @@
-function getStoredData() {
+/* function getStoredData() {
   let storeDatainLocal = [];
   const getDataFromStorage = localStorage.getItem("movieLists");
   const daysInMillisecondfor3days = 3 * 24 * 60 * 60 * 1000;
@@ -11,7 +11,7 @@ function getStoredData() {
       storeDatainLocal = movieData.movies;
     } else {
       localStorage.removeItem("movieLists");
-      localStorage = movieList; /* reset */
+      localStorage = movieList;
     }
   } else {
     localStorage = movieList;
@@ -30,3 +30,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const triala = getStoredData();
   console.log(triala);
 });
+ */
