@@ -60,5 +60,32 @@
   flex-direction: column;
 }
 .ratingsContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+.ratingsContainer i {
   margin-top: -10px;
+  color: gray;
+  transition: color 0.1s, transform 0.2s;
+}
+.ratingsContainer i:hover {
+  color: yellow;
+  transform: scale(1.2) rotate(5deg);
+}
+.ratingsContainer i:hover,
+.ratingsContainer i:hover ~ i {
+  color: yellow;
+  transform: scale(1.2) rotate(5deg);
+}
+
+.ratingsContainer i[data-clicked] {
+  color: yellow;
+}
+
+.ratingsContainer i[data-clicked],
+.ratingsContainer i[data-clicked] ~ i {
+  color: yellow;
 }

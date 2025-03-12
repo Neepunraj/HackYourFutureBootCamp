@@ -1,4 +1,3 @@
-
 const mainApp = document.getElementById("root");
 const header = document.createElement("header");
 header.setAttribute("class", "headerContainer");
@@ -24,6 +23,7 @@ const heroSection = document.createElement("section");
 heroSection.setAttribute("class", "heroSection");
 
 /* card container for each movie */
+
 movieList.forEach((movie) => {
   const cardContainer = document.createElement("div");
   cardContainer.setAttribute("class", "cardContainer");
@@ -85,6 +85,7 @@ movieList.forEach((movie) => {
   const movieDescription = document.createElement("p");
   movieDescription.innerText = movie.description;
   detailsDiv.appendChild(movieDescription);
+
   const averageRating = document.createElement("p");
   averageRating.innerText = `Current Rating: ${movie.rating}/5`;
   detailsDiv.appendChild(averageRating);
@@ -94,38 +95,32 @@ movieList.forEach((movie) => {
   ratingHeader.innerText = "Give Ratings ";
   detailsDiv.appendChild(ratingHeader);
   const ratingsDiv = document.createElement("div");
-  ratingsDiv.className = "ratingsContainer";
+  ratingsDiv.setAttribute("class", "ratingsContainer");
 
-  let currentRating = 0;
-
-  for (let i = 0; i < 5; i++) {
+  for (let i = 5; i > 0; i--) {
     const star = document.createElement("i");
     star.className = "fa fa-star";
     star.setAttribute("data-rating", i);
     ratingsDiv.appendChild(star);
+  }
 
-    star.addEventListener("mouseenter", () => {
-      for (let j = 0; j <= i; j++) {
-        const tempIcon = ratingsDiv.children[j];
-        tempIcon.style.color = "yellow";
-      }
-    });
+  const stars = ratingsDiv.querySelectorAll("i");
 
-    star.addEventListener("mouseleave", () => {
-      for (let j = 0; j < i; j++) {
-        const tempIcon = ratingsDiv.children[j];
-        tempIcon.style.color = j < movie.rating ? "yellow" : "gray";
-      }
-    });
-
+  let ratings = [];
+  for (let star of stars) {
     star.addEventListener("click", () => {
-      movie.rating = i + 1;
-      currentRating = i + 1;
-      for (let j = 0; j < 5; j++) {
-        const tempIcon = ratingsDiv.children[j];
-        tempIcon.style.color = j < currentRating ? "yellow" : "gray";
+      const children = star.parentElement.children;
+      for (let child of children) {
+        if (child.getAttribute("data-clicked")) {
+          return false;
+        }
       }
-      averageRating.innerText = `Current Rating: ${movie.rating}/5`;
+
+      star.setAttribute("data-clicked", "true");
+      const rating = star.dataset.rating;
+      movie.rating = rating;
+      /* set rating  */
+      console.log(movie);
     });
   }
 
