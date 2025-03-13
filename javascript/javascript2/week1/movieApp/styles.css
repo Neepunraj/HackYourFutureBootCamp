@@ -35,7 +35,8 @@
   width: 100%;
   padding: 10;
 }
-.stickyCategory::-webkit-scrollbar {
+.stickyCategory::-webkit-scrollbar,
+.showMovieDiv::-webkit-scrollbar {
   display: none;
 }
 .categoryUl {
@@ -48,15 +49,19 @@
   align-items: center;
   text-align: center;
 }
-.categoryUl li {
+.categoryUl li,
+.primaryButton {
   white-space: nowrap;
   padding: 10px;
   background-color: rgba(70, 25, 25, 0.8);
   color: white;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+  margin-top: 10px;
 }
-.categoryUl li:hover {
+.categoryUl li:hover,
+.primaryButton:hover {
   cursor: pointer;
   color: rgb(237, 190, 190);
   transform: scale(1.1);
@@ -70,7 +75,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 auto;
+  margin: 20px auto;
   justify-content: center;
   align-items: center;
 }
@@ -161,6 +166,16 @@
 .ratingsContainer i[data-clicked],
 .ratingsContainer i[data-clicked] ~ i {
   color: yellow;
+}
+/* sorting by highest rating */
+.moviesByRatingSection {
+  gap: 10px;
+}
+.showMovieDiv {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  gap: 10px;
 }
 @media (max-width: 600px) {
   .headerUl {

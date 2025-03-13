@@ -5,6 +5,112 @@ const h1 = document.createElement("h1");
 h1.innerText = "MovieApp";
 header.appendChild(h1);
 const navLinkList = ["Home", "Collections", "Contact Us"];
+/* common Movie Card
+ */
+function getMovieCard(movie) {
+  const cardContainer = document.createElement("div");
+  cardContainer.setAttribute("class", "cardContainer fade-animation");
+
+  /* image */
+  const heroImage = document.createElement("img");
+  heroImage.setAttribute("class", "heroImage");
+
+  heroImage.src = movie.poster_url;
+  cardContainer.appendChild(heroImage);
+
+  /* div for year, title and Pric */
+  const yearTitlePriceContainer = document.createElement("div");
+  yearTitlePriceContainer.setAttribute("class", "YearTitleContainer");
+
+  const movieYear = document.createElement("p");
+  movieYear.innerText = movie.movie_year;
+  yearTitlePriceContainer.appendChild(movieYear);
+
+  let movieTitle = document.createElement("h3");
+  movieTitle.innerText = movie.title;
+  yearTitlePriceContainer.appendChild(movieTitle);
+  if (movie.title.length > 15) {
+    let truncateText = movie.title.substring(0, 15) + "...";
+    movieTitle.innerText = truncateText;
+  }
+
+  const price = document.createElement("p");
+  price.innerText = `${movie.price}DKK`;
+  yearTitlePriceContainer.append(price);
+  cardContainer.appendChild(yearTitlePriceContainer);
+
+  /* descriptions and details */
+  const detailsDiv = document.createElement("div");
+  detailsDiv.setAttribute("class", "detailsDiv fade-animation");
+
+  yearTitlePriceContainer.appendChild(detailsDiv);
+  cardContainer.addEventListener("mouseover", () => {
+    detailsDiv.classList.add("visible");
+    cardContainer.style.cursor = "pointer";
+  });
+  cardContainer.addEventListener("mouseleave", () => {
+    detailsDiv.classList.remove("visible");
+  });
+
+  const director = document.createElement("p");
+  director.innerText = `Director: ${movie.director}`;
+  detailsDiv.appendChild(director);
+
+  const casts = document.createElement("p");
+  casts.innerText = `Casts: `;
+  detailsDiv.appendChild(casts);
+
+  movie.actors.map((cast) => {
+    const spanText = document.createElement("span");
+    spanText.innerText = `${cast}, `;
+    casts.appendChild(spanText);
+  });
+
+  const movieDescription = document.createElement("p");
+  movieDescription.innerText = movie.description;
+  detailsDiv.appendChild(movieDescription);
+
+  const averageRating = document.createElement("p");
+  averageRating.innerText = `Current Rating: ${movie.rating}`;
+  detailsDiv.appendChild(averageRating);
+
+  /* rating */
+  const ratingHeader = document.createElement("h3");
+  ratingHeader.innerText = "Give Ratings ";
+  detailsDiv.appendChild(ratingHeader);
+  const ratingsDiv = document.createElement("div");
+  ratingsDiv.setAttribute("class", "ratingsContainer");
+
+  for (let i = 5; i > 0; i--) {
+    const star = document.createElement("i");
+    star.className = "fa fa-star";
+    star.setAttribute("data-rating", i);
+    ratingsDiv.appendChild(star);
+  }
+
+  const stars = ratingsDiv.querySelectorAll("i");
+
+  for (let star of stars) {
+    star.addEventListener("click", () => {
+      const children = star.parentElement.children;
+      for (let child of children) {
+        if (child.getAttribute("data-clicked")) {
+          return false;
+        }
+      }
+
+      star.setAttribute("data-clicked", "true");
+      const rating = star.dataset.rating;
+      movie.rating = rating;
+      /* set rating  */
+      console.log(movie);
+    });
+  }
+
+  detailsDiv.appendChild(ratingsDiv);
+
+  return cardContainer;
+}
 
 /* search section */
 const searchDiv = document.createElement("div");
@@ -64,12 +170,22 @@ movieCategory.forEach((category) => {
     }
   });
 });
+/* functions for filtering */
 function getMoviesbyNameSearch(title) {
-  return movieList.filter((movie) => movie.title.toLocaleLowerCase() === title);
+  return movieList.filter((movie) => movie.title.toLowerCase() === title);
 }
 function getMoviesbyCategory(category) {
   return movieList.filter((movie) => movie.genre === category);
 }
+
+function getmoviesbyRating(order) {
+  return movieList.sort((itemA, itemB) => {
+    return order === "highest"
+      ? itemB.rating - itemA.rating
+      : itemA.rating - itemB.rating;
+  });
+}
+
 /* herosection */
 const heroSection = document.createElement("section");
 heroSection.setAttribute("class", "heroSection fade-animation");
@@ -79,115 +195,13 @@ if (allCategories.length > 0) {
   allCategories[0].classList.add("active");
   displayMovies(movieList);
 }
-/* card container for each movie */
 
 function displayMovies(movies) {
-  console.log(movies.length);
   heroSection.innerHTML = "";
   if (movies.length > 0) {
     movies.forEach((movie) => {
-      const cardContainer = document.createElement("div");
-      cardContainer.setAttribute("class", "cardContainer fade-animation");
-
-      /* image */
-      const heroImage = document.createElement("img");
-      heroImage.setAttribute("class", "heroImage");
-
-      heroImage.src = movie.poster_url;
-      cardContainer.appendChild(heroImage);
-
-      /* div for year, title and Pric */
-      const yearTitlePriceContainer = document.createElement("div");
-      yearTitlePriceContainer.setAttribute("class", "YearTitleContainer");
-
-      const movieYear = document.createElement("p");
-      movieYear.innerText = movie.movie_year;
-      yearTitlePriceContainer.appendChild(movieYear);
-
-      let movieTitle = document.createElement("h3");
-      movieTitle.innerText = movie.title;
-      yearTitlePriceContainer.appendChild(movieTitle);
-      if (movie.title.length > 15) {
-        let truncateText = movie.title.substring(0, 15) + "...";
-        movieTitle.innerText = truncateText;
-      }
-
-      const price = document.createElement("p");
-      price.innerText = `${movie.price}DKK`;
-      yearTitlePriceContainer.append(price);
-      cardContainer.appendChild(yearTitlePriceContainer);
-
-      /* descriptions and details */
-      const detailsDiv = document.createElement("div");
-      detailsDiv.setAttribute("class", "detailsDiv fade-animation");
-
-      yearTitlePriceContainer.appendChild(detailsDiv);
-      cardContainer.addEventListener("mouseover", () => {
-        detailsDiv.classList.add("visible");
-        cardContainer.style.cursor = "pointer";
-      });
-      cardContainer.addEventListener("mouseleave", () => {
-        detailsDiv.classList.remove("visible");
-      });
-
-      const director = document.createElement("p");
-      director.innerText = `Director: ${movie.director}`;
-      detailsDiv.appendChild(director);
-
-      const casts = document.createElement("p");
-      casts.innerText = `Casts: `;
-      detailsDiv.appendChild(casts);
-
-      movie.actors.map((cast) => {
-        const spanText = document.createElement("span");
-        spanText.innerText = `${cast}, `;
-        casts.appendChild(spanText);
-      });
-
-      const movieDescription = document.createElement("p");
-      movieDescription.innerText = movie.description;
-      detailsDiv.appendChild(movieDescription);
-
-      const averageRating = document.createElement("p");
-      averageRating.innerText = `Current Rating: ${movie.rating}`;
-      detailsDiv.appendChild(averageRating);
-
-      /* rating */
-      const ratingHeader = document.createElement("h3");
-      ratingHeader.innerText = "Give Ratings ";
-      detailsDiv.appendChild(ratingHeader);
-      const ratingsDiv = document.createElement("div");
-      ratingsDiv.setAttribute("class", "ratingsContainer");
-
-      for (let i = 5; i > 0; i--) {
-        const star = document.createElement("i");
-        star.className = "fa fa-star";
-        star.setAttribute("data-rating", i);
-        ratingsDiv.appendChild(star);
-      }
-
-      const stars = ratingsDiv.querySelectorAll("i");
-
-      for (let star of stars) {
-        star.addEventListener("click", () => {
-          const children = star.parentElement.children;
-          for (let child of children) {
-            if (child.getAttribute("data-clicked")) {
-              return false;
-            }
-          }
-
-          star.setAttribute("data-clicked", "true");
-          const rating = star.dataset.rating;
-          movie.rating = rating;
-          /* set rating  */
-          console.log(movie);
-        });
-      }
-
-      detailsDiv.appendChild(ratingsDiv);
-
-      heroSection.appendChild(cardContainer);
+      const movieCard = getMovieCard(movie);
+      heroSection.appendChild(movieCard);
     });
   } else {
     const noMoviesFoundPara = document.createElement("p");
@@ -196,5 +210,50 @@ function displayMovies(movies) {
     heroSection.appendChild(noMoviesFoundPara);
   }
 }
-
 mainApp.appendChild(heroSection);
+
+/* Rating section*/
+const moviesByRatingSection = document.createElement("section");
+mainApp.appendChild(moviesByRatingSection);
+moviesByRatingSection.setAttribute("class", "moviesByRatingSection");
+
+const headerForRating = document.createElement("h3");
+headerForRating.innerText = "Movies by Rating";
+headerForRating.setAttribute("class", "headerForRating");
+moviesByRatingSection.appendChild(headerForRating);
+
+const showMovieDiv = document.createElement("div");
+showMovieDiv.setAttribute("class", "showMovieDiv");
+moviesByRatingSection.appendChild(showMovieDiv);
+
+const highesttoLowest = document.createElement("button");
+highesttoLowest.innerText = "Highest";
+highesttoLowest.setAttribute("data-sort", "highest");
+highesttoLowest.setAttribute("class", "primaryButton");
+moviesByRatingSection.appendChild(highesttoLowest);
+
+const lowestToHighest = document.createElement("button");
+lowestToHighest.innerText = "Lowest";
+lowestToHighest.setAttribute("data-sort", "lowest");
+lowestToHighest.setAttribute("class", "primaryButton");
+moviesByRatingSection.appendChild(lowestToHighest);
+
+const sortButtons = [highesttoLowest, lowestToHighest];
+sortButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const sortbyOrder = button.getAttribute("data-sort");
+    displayMoviesbyRating(sortbyOrder);
+  });
+});
+
+/* default display */
+displayMoviesbyRating("highest");
+function displayMoviesbyRating(order) {
+  showMovieDiv.innerHTML = "";
+  const sortedMovies = getmoviesbyRating(order);
+  sortedMovies.forEach((movie) => {
+    const newDiv = getMovieCard(movie);
+
+    showMovieDiv.appendChild(newDiv);
+  });
+}
