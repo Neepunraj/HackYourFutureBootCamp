@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
 }
+/* header */
 .headerContainer {
   height: 100;
   width: 100;
@@ -9,33 +10,107 @@
   align-items: center;
   padding: 0 10px 0 10px;
 }
-.hederUl {
+.headerUl {
   list-style: none;
   display: flex;
   gap: 10px;
 }
+.searchDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.searchMovie {
+  width: 300px;
+  height: 40px;
+}
+.searchButton {
+  background-color: rgba(70, 25, 25, 0.8);
+  color: white;
+}
+
+/* sort by category */
+.stickyCategory {
+  overflow-x: auto;
+  width: 100%;
+  padding: 10;
+}
+.stickyCategory::-webkit-scrollbar,
+.showMovieDiv::-webkit-scrollbar {
+  display: none;
+}
+.categoryUl {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  scroll-behavior: smooth;
+  padding-right: 10px;
+
+  align-items: center;
+  text-align: center;
+}
+.categoryUl li,
+.primaryButton {
+  white-space: nowrap;
+  padding: 10px;
+  background-color: rgba(70, 25, 25, 0.8);
+  color: white;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.categoryUl li:hover,
+.primaryButton:hover {
+  cursor: pointer;
+  color: rgb(237, 190, 190);
+  transform: scale(1.1);
+}
+.categoryUl li.active {
+  cursor: pointer;
+  color: rgb(237, 190, 190);
+}
+/* herosection */
 .heroSection {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 auto;
+  margin: 20px auto;
   justify-content: center;
   align-items: center;
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+/* for each card */
 .cardContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   width: 300px;
-  border: 2px solid green;
+  border: 1px solid green;
   position: relative;
+  transition: all 1.2s ease-in-out;
 }
+
 .heroImage {
   height: auto;
   width: 300px;
 }
-
+/* Year title and price div */
 .YearTitleContainer {
   padding: 0 5px 0 5px;
   flex-wrap: wrap;
@@ -47,6 +122,7 @@
   bottom: -60px;
   width: 290px;
 }
+/* details div */
 .detailsDiv {
   display: none;
   padding: 0 10px 0 15px;
@@ -55,10 +131,54 @@
   background-color: rgba(70, 25, 25, 0.8);
   left: 0;
 }
+
 .detailsDiv.visible {
   display: flex;
   flex-direction: column;
 }
 .ratingsContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+/* for ratings */
+.ratingsContainer i {
   margin-top: -10px;
+  color: gray;
+  transition: color 0.1s, transform 0.2s;
+}
+.ratingsContainer i:hover {
+  color: yellow;
+  transform: scale(1.2) rotate(5deg);
+}
+.ratingsContainer i:hover,
+.ratingsContainer i:hover ~ i {
+  color: yellow;
+  transform: scale(1.2) rotate(5deg);
+}
+
+.ratingsContainer i[data-clicked] {
+  color: yellow;
+}
+
+.ratingsContainer i[data-clicked],
+.ratingsContainer i[data-clicked] ~ i {
+  color: yellow;
+}
+/* sorting by highest rating */
+.moviesByRatingSection {
+  gap: 10px;
+}
+.showMovieDiv {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  gap: 10px;
+}
+@media (max-width: 600px) {
+  .headerUl {
+    display: none;
+  }
 }
