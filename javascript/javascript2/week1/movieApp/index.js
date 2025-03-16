@@ -178,7 +178,7 @@ function getMoviesbyCategory(category) {
   return movieList.filter((movie) => movie.genre === category);
 }
 
-function getmoviesbyRating(order) {
+function getMoviesByRating(order) {
   return movieList.sort((itemA, itemB) => {
     return order === "highest"
       ? itemB.rating - itemA.rating
