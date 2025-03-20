@@ -4,21 +4,36 @@ timingTitle.innerText = "Your timing in in Our App";
 const timingPara = document.createElement("p");
 timingPara.setAttribute("class", "timingPara");
 
-const buttonToClickMovie = document.createElement("button");
-buttonToClickMovie.innerText = "Start";
+const newPar = document.createElement("p");
+newPar.textContent = "00:00:00";
+newPar.setAttribute("class", "timingPara");
+
+const newPara2 = document.createElement("p");
+newPara2.setAttribute("class", "newPara2");
+newPara2.innerText =
+  "Lets Check how much you spend on Selecting Movie, Please Press Start Button and go on movie to select any of them";
+
+const startTimer = document.createElement("button");
+startTimer.innerText = "Start";
+startTimer.setAttribute("class", "primaryButton");
 const stopTimer = document.createElement("button");
 stopTimer.innerText = "Stop";
+stopTimer.setAttribute("class", "primaryButton");
+
 const resetTimer = document.createElement("button");
 resetTimer.innerText = "Reset";
+resetTimer.setAttribute("class", "primaryButton");
 
 timingSection.append(
   timingTitle,
   timingPara,
-  buttonToClickMovie,
+  newPara2,
+  newPar,
+  startTimer,
   stopTimer,
   resetTimer
 );
-buttonToClickMovie.addEventListener("click", () => {
+startTimer.addEventListener("click", () => {
   start();
 });
 stopTimer.addEventListener("click", () => {
@@ -57,8 +72,7 @@ function renderTime(item) {
   const hrsInFormat = hours < 10 ? `0${hours}` : hours;
   item.innerText = `${hrsInFormat}:${minsInFormat}:${secsInFormat}`;
 }
-const newPar = document.createElement("p");
-timingSection.appendChild(newPar);
+
 function startCount() {
   setInterval(() => {
     renderTime(timingPara);
@@ -89,7 +103,8 @@ function reset() {
   startTime = 0;
   elapsedTime = 0;
   isRunning = false;
-  newPar.textContent = "00.00.00";
+  timer = null;
+  newPar.textContent = "00:00:00";
 }
 
 function update() {
@@ -102,4 +117,25 @@ function update() {
   mins = `${mins}`.padStart(2, 0);
   sec = `${sec}`.padStart(2, 0);
   newPar.innerText = `${hrs}:${mins}:${sec}`;
+}
+const allCardContainer = document.querySelectorAll(".cardContainer");
+allCardContainer.forEach((cardContainer) => {
+  cardContainer.addEventListener("click", () => {
+    handleClickCardContainer(cardContainer);
+  });
+});
+function handleClickCardContainer(cardContainer) {
+  stop();
+  if (timer) {
+    const min = `${Math.floor((elapsedTime / (1000 * 60)) % 60)}`.padStart(
+      2,
+      0
+    );
+    const sec = `${Math.floor((elapsedTime / 1000) % 60)}`.padStart(2, 0);
+    const movieTitle = cardContainer.querySelector(
+      ".YearTitleContainer h3"
+    ).innerText;
+
+    alert(` You took ${min}:${sec} sec to select a movie : ${movieTitle}`);
+  }
 }

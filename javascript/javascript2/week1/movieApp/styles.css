@@ -187,6 +187,9 @@
   font-size: 32px;
   font-weight: 700;
 }
+.newPara2 {
+  font-size: larger;
+}
 @media (max-width: 600px) {
   .headerUl {
     display: none;
