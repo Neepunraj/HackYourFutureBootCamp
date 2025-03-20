@@ -1,21 +1,3 @@
-const movieCategory = [
-  "All",
-
-  "Action",
-  "Kids",
-  "Sci-Fi",
-  "Years",
-  "Bollywood",
-  "Hollywood",
-  "Thriller",
-  "High Rated",
-  "Crime",
-  "Adventure",
-  "War",
-  "Fantasy",
-  "Comedy",
-];
-
 const movieList = [
   {
     id: 1,
