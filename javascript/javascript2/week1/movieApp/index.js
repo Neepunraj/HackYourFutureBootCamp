@@ -33,7 +33,7 @@ timingSection.append(
   stopTimer,
   resetTimer
 );
-startTimer.addEventListener("click", () => {
+startTimer.addEventListener("click", start);
   start();
 });
 stopTimer.addEventListener("click", () => {
