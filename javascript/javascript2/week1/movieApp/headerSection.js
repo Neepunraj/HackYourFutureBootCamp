@@ -22,7 +22,7 @@ header.appendChild(searchDiv);
 searchDiv.appendChild(searchBox);
 searchDiv.appendChild(searchButton);
 
-searchButton.addEventListener("click", () => {
+searchButton.addEventListener("click", handleSearch);
   handleSearch();
 });
 
