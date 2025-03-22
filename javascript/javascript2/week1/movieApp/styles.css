@@ -62,14 +62,15 @@
 }
 .categoryUl li:hover,
 .primaryButton:hover {
-  cursor: pointer;
   color: rgb(237, 190, 190);
   transform: scale(1.1);
+  cursor: pointer;
 }
 .categoryUl li.active {
-  cursor: pointer;
   color: rgb(237, 190, 190);
+  cursor: pointer;
 }
+
 /* herosection */
 .heroSection {
   display: flex;
@@ -176,6 +177,18 @@
   overflow-x: auto;
   width: 100%;
   gap: 10px;
+}
+.timingPara {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 2px solid black;
+  height: 40px;
+  font-size: 32px;
+  font-weight: 700;
+}
+.newPara2 {
+  font-size: larger;
 }
 @media (max-width: 600px) {
   .headerUl {
