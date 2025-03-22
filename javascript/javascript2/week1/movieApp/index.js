@@ -67,7 +67,7 @@ function getTime() {
 }
 
 function renderTime(item) {
-  const secsInFormat = seconds < 10 ? `0${seconds}` : seconds;
+  const secsInFormat = seconds.toString().padStart(2, '0');
   const minsInFormat = minutes < 10 ? `0${minutes}` : minutes;
   const hrsInFormat = hours < 10 ? `0${hours}` : hours;
   item.innerText = `${hrsInFormat}:${minsInFormat}:${secsInFormat}`;
