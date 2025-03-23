@@ -5,14 +5,17 @@ categoryList.setAttribute("class", "stickyCategory");
 const categoryUl = document.createElement("ul");
 categoryUl.setAttribute("class", "categoryUl");
 categoryList.appendChild(categoryUl);
+async function movieCategory() {
+  const movieCategory = await getMovieCategoryListByGenre();
+  movieCategory.forEach((category) => {
+    const li = document.createElement("li");
+    li.innerText = category;
+    categoryUl.appendChild(li);
+  });
+}
+movieCategory();
 
-const movieCategory = getMovieCategoryListByGenre();
 /* create list with movie categories  */
-movieCategory.forEach((category) => {
-  const li = document.createElement("li");
-  li.innerText = category;
-  categoryUl.appendChild(li);
-});
 
 const allCategoryByGenreInLi = categoryUl.querySelectorAll("li");
 if (allCategoryByGenreInLi.length > 0) {
@@ -34,7 +37,9 @@ function handleClickCategoryLi(liItem) {
     displayMovies(movieList);
   } else {
     filteredMovie = getMoviesbyCategory(genre);
+    console.log(filteredMovie);
     displayMovies(filteredMovie);
   }
 }
+
 mainApp.appendChild(categoryList);

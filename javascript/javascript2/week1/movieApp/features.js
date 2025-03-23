@@ -112,15 +112,18 @@ function handleSearch() {
   displayMovies(searchedMovie);
 }
 
-function getMoviesbyNameSearch(title) {
+async function getMoviesbyNameSearch(title) {
+  movieList = await getMovies();
   return movieList.filter((movie) => movie.title.toLowerCase() === title);
 }
 
-function getMoviesbyCategory(category) {
+async function getMoviesbyCategory(category) {
+  movieList = await getMovies();
   return movieList.filter((movie) => movie.genre === category);
 }
 
-function getMovieCategoryListByGenre() {
+async function getMovieCategoryListByGenre() {
+  movieList = await getMovies();
   const genreList = movieList.map((item) => item.genre);
   const uniqueGenre = ["All"]; /* by default all is there */
   genreList.forEach((genre) => {
@@ -128,8 +131,10 @@ function getMovieCategoryListByGenre() {
       uniqueGenre.push(genre);
     }
   });
+
   return uniqueGenre;
 }
+
 function getMoviesByRating(order) {
   return movieList.sort((itemA, itemB) => {
     return order === "highest"

@@ -34,8 +34,7 @@ timingSection.append(
   resetTimer
 );
 startTimer.addEventListener("click", start);
-  start();
-});
+
 stopTimer.addEventListener("click", () => {
   stop();
 });
@@ -67,7 +66,7 @@ function getTime() {
 }
 
 function renderTime(item) {
-  const secsInFormat = seconds.toString().padStart(2, '0');
+  const secsInFormat = seconds.toString().padStart(2, "0");
   const minsInFormat = minutes < 10 ? `0${minutes}` : minutes;
   const hrsInFormat = hours < 10 ? `0${hours}` : hours;
   item.innerText = `${hrsInFormat}:${minsInFormat}:${secsInFormat}`;
@@ -139,3 +138,5 @@ function handleClickCardContainer(cardContainer) {
     alert(` You took ${min}:${sec} sec to select a movie : ${movieTitle}`);
   }
 }
+
+init();

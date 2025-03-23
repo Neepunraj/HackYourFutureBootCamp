@@ -22,9 +22,8 @@ header.appendChild(searchDiv);
 searchDiv.appendChild(searchBox);
 searchDiv.appendChild(searchButton);
 
-searchButton.addEventListener("click", handleSearch);
-  handleSearch();
-});
+searchButton.addEventListener("click", handleSearch());
+handleSearch();
 
 /* nav Ul */
 const headerUl = document.createElement("ul");
