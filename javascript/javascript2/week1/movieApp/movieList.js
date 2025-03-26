@@ -1,18 +1,11 @@
-let movieList = [];
-
+/* fetch movies from github using async await */
 async function getMovies() {
   try {
     const response = await fetch(
       "https://raw.githubusercontent.com/Neepunraj/neepunraj.github.io/refs/heads/main/movies.json"
     );
-    const data = await response.json();
-
-    return data;
+    return response.json();
   } catch (err) {
     console.log(err);
   }
-}
-async function init() {
-  movieList = await getMovies();
-  displayMovies(movieList);
 }
