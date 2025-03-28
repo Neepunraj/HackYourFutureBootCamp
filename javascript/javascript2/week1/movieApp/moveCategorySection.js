@@ -6,35 +6,34 @@ const categoryUl = document.createElement("ul");
 categoryUl.setAttribute("class", "categoryUl");
 categoryList.appendChild(categoryUl);
 
-const movieCategory = getMovieCategoryListByGenre();
-/* create list with movie categories  */
-movieCategory.forEach((category) => {
-  const li = document.createElement("li");
-  li.innerText = category;
-  categoryUl.appendChild(li);
-});
-
-const allCategoryByGenreInLi = categoryUl.querySelectorAll("li");
-if (allCategoryByGenreInLi.length > 0) {
-  allCategoryByGenreInLi[0].classList.add("active");
-  displayMovies(movieList);
-}
-allCategoryByGenreInLi.forEach((liItem) => {
-  liItem.addEventListener("click", () => {
-    handleClickCategoryLi(liItem);
+async function movieCategory() {
+  const { uniqueGenre, movieList } = await getMovieCategoryListByGenre();
+  uniqueGenre.forEach((category) => {
+    const li = document.createElement("li");
+    li.innerText = category;
+    if (category === "All") {
+      li.classList.add("active");
+    }
+    li.addEventListener("click", () => handleClickCategoryLi(li, movieList));
+    categoryUl.appendChild(li);
   });
-});
+}
+
 /* click event in li from movie */
 
-function handleClickCategoryLi(liItem) {
-  allCategoryByGenreInLi.forEach((li) => li.classList.remove("active"));
+async function handleClickCategoryLi(liItem, movieList) {
+  const liListInCategory = categoryUl.querySelectorAll("li");
+  liListInCategory.forEach((li) => li.classList.remove("active"));
   liItem.classList.add("active");
   const genre = liItem.innerText;
+  console.log(genre);
   if (genre === "All") {
     displayMovies(movieList);
   } else {
-    filteredMovie = getMoviesbyCategory(genre);
+    filteredMovie = await getMoviesByCategory(genre);
+    console.log(filteredMovie);
     displayMovies(filteredMovie);
   }
 }
+
 mainApp.appendChild(categoryList);

@@ -13,39 +13,32 @@ moviesByRatingSection.appendChild(headerForRating);
 const showMovieDiv = document.createElement("div");
 showMovieDiv.setAttribute("class", "showMovieDiv");
 moviesByRatingSection.appendChild(showMovieDiv);
-
-const highestToLowest = document.createElement("button");
-highestToLowest.innerText = "Highest";
-highestToLowest.setAttribute("data-sort", "highest");
-highestToLowest.setAttribute("class", "primaryButton");
-moviesByRatingSection.appendChild(highestToLowest);
-
-const lowestToHighest = document.createElement("button");
-lowestToHighest.innerText = "Lowest";
-lowestToHighest.setAttribute("data-sort", "lowest");
-lowestToHighest.setAttribute("class", "primaryButton");
-moviesByRatingSection.appendChild(lowestToHighest);
-
-const sortButtons = moviesByRatingSection.querySelectorAll("button");
-sortButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    handleButtonClick(button);
+const sortButton = ["Highest", "Lowest"];
+sortButton.forEach((buttonText) => {
+  const createButton = document.createElement("button");
+  createButton.innerText = buttonText;
+  createButton.setAttribute("data-sort", buttonText);
+  createButton.setAttribute("class", "primaryButton");
+  createButton.addEventListener("click", () => {
+    handleButtonClick(createButton);
   });
+  moviesByRatingSection.appendChild(createButton);
 });
 
 function handleButtonClick(button) {
   const sortRating = button.getAttribute("data-sort");
+  const buttonsList = moviesByRatingSection.querySelectorAll("button");
+  buttonsList.forEach((button) => button.classList.remove("active"));
+  button.classList.add("active");
   displayMoviesByRating(sortRating);
 }
 /* default display */
-displayMoviesByRating("highest");
 
-function displayMoviesByRating(order) {
+async function displayMoviesByRating(order) {
   showMovieDiv.innerHTML = "";
-  const sortedMovies = getMoviesByRating(order);
+  const sortedMovies = await getMoviesByRating(order);
   sortedMovies.forEach((movie) => {
     const newDiv = getMovieCard(movie);
-
     showMovieDiv.appendChild(newDiv);
   });
 }

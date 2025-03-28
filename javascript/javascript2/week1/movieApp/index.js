@@ -1,4 +1,5 @@
 const timingSection = document.createElement("section");
+timingSection.setAttribute("class", "timingSection");
 const timingTitle = document.createElement("h2");
 timingTitle.innerText = "Your timing in in Our App";
 const timingPara = document.createElement("p");
@@ -13,36 +14,32 @@ newPara2.setAttribute("class", "newPara2");
 newPara2.innerText =
   "Lets Check how much you spend on Selecting Movie, Please Press Start Button and go on movie to select any of them";
 
-const startTimer = document.createElement("button");
-startTimer.innerText = "Start";
-startTimer.setAttribute("class", "primaryButton");
-const stopTimer = document.createElement("button");
-stopTimer.innerText = "Stop";
-stopTimer.setAttribute("class", "primaryButton");
+timingSection.append(timingTitle, timingPara, newPara2, newPar);
 
-const resetTimer = document.createElement("button");
-resetTimer.innerText = "Reset";
-resetTimer.setAttribute("class", "primaryButton");
-
-timingSection.append(
-  timingTitle,
-  timingPara,
-  newPara2,
-  newPar,
-  startTimer,
-  stopTimer,
-  resetTimer
-);
-startTimer.addEventListener("click", start);
-  start();
-});
-stopTimer.addEventListener("click", () => {
-  stop();
-});
-resetTimer.addEventListener("click", () => {
-  reset();
+/* optimized Stop Timer for repeat button creation and events */
+const stopWatchTimer = ["Start", "Stop", "Reset"];
+stopWatchTimer.forEach((buttonText) => {
+  const stopWatchButton = document.createElement("button");
+  stopWatchButton.innerText = buttonText;
+  stopWatchButton.setAttribute("class", "primaryButton");
+  stopWatchButton.addEventListener("click", () =>
+    handleTimerButton(buttonText)
+  );
+  timingSection.appendChild(stopWatchButton);
 });
 
+/* events function based on buttonText */
+function handleTimerButton(buttonText) {
+  if (buttonText === "Start") {
+    start();
+  }
+  if (buttonText === "Stop") {
+    stop();
+  }
+  if (buttonText === "Reset") {
+    reset();
+  }
+}
 let intervalID = null;
 mainApp.appendChild(timingSection);
 
@@ -67,7 +64,7 @@ function getTime() {
 }
 
 function renderTime(item) {
-  const secsInFormat = seconds.toString().padStart(2, '0');
+  const secsInFormat = seconds.toString().padStart(2, "0");
   const minsInFormat = minutes < 10 ? `0${minutes}` : minutes;
   const hrsInFormat = hours < 10 ? `0${hours}` : hours;
   item.innerText = `${hrsInFormat}:${minsInFormat}:${secsInFormat}`;
@@ -83,8 +80,11 @@ let timer = null;
 let startTime = 0;
 let elapsedTime = 0;
 let isRunning = false;
+const allButtons = timingSection.querySelectorAll("button");
 
 function start() {
+  allButtons.forEach((button) => button.classList.remove("active"));
+  event.target.classList.add("active");
   if (!isRunning) {
     startTime = Date.now() - elapsedTime;
     timer = setInterval(update, 1000);
@@ -92,6 +92,8 @@ function start() {
   }
 }
 function stop() {
+  allButtons.forEach((button) => button.classList.remove("active"));
+  event.target.classList.add("active");
   if (isRunning) {
     clearInterval(timer);
     isRunning = false;
@@ -99,6 +101,8 @@ function stop() {
   }
 }
 function reset() {
+  allButtons.forEach((button) => button.classList.remove("active"));
+  event.target.classList.add("active");
   clearInterval(timer);
   startTime = 0;
   elapsedTime = 0;
@@ -118,12 +122,7 @@ function update() {
   sec = `${sec}`.padStart(2, 0);
   newPar.innerText = `${hrs}:${mins}:${sec}`;
 }
-const allCardContainer = document.querySelectorAll(".cardContainer");
-allCardContainer.forEach((cardContainer) => {
-  cardContainer.addEventListener("click", () => {
-    handleClickCardContainer(cardContainer);
-  });
-});
+
 function handleClickCardContainer(cardContainer) {
   stop();
   if (timer) {

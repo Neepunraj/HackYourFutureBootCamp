@@ -11,7 +11,7 @@ function getMovieCard(movie) {
   heroImage.src = movie.poster_url;
   cardContainer.appendChild(heroImage);
 
-  /* div for year, title and Pric */
+  /* div for year, title and Price */
   const yearTitlePriceContainer = document.createElement("div");
   yearTitlePriceContainer.setAttribute("class", "YearTitleContainer");
 
@@ -99,6 +99,10 @@ function getMovieCard(movie) {
       console.log(movie);
     });
   }
+  /* added eventListener */
+  cardContainer.addEventListener("click", () =>
+    handleClickCardContainer(cardContainer)
+  );
 
   detailsDiv.appendChild(ratingsDiv);
 
@@ -106,21 +110,23 @@ function getMovieCard(movie) {
 }
 
 /* function for search event */
-function handleSearch() {
+async function handleSearch() {
+  movieList = await getMovies();
   const searchedInput = searchBox.value.toLocaleLowerCase();
-  const searchedMovie = getMoviesbyNameSearch(searchedInput);
+  const searchedMovie = movieList.filter(
+    (movie) => movie.title.toLowerCase() === searchedInput
+  );
   displayMovies(searchedMovie);
 }
 
-function getMoviesbyNameSearch(title) {
-  return movieList.filter((movie) => movie.title.toLowerCase() === title);
-}
-
-function getMoviesbyCategory(category) {
+async function getMoviesByCategory(category) {
+  movieList = await getMovies();
   return movieList.filter((movie) => movie.genre === category);
 }
 
-function getMovieCategoryListByGenre() {
+async function getMovieCategoryListByGenre() {
+  movieList = await getMovies();
+
   const genreList = movieList.map((item) => item.genre);
   const uniqueGenre = ["All"]; /* by default all is there */
   genreList.forEach((genre) => {
@@ -128,11 +134,13 @@ function getMovieCategoryListByGenre() {
       uniqueGenre.push(genre);
     }
   });
-  return uniqueGenre;
+
+  return { uniqueGenre, movieList };
 }
-function getMoviesByRating(order) {
+
+async function getMoviesByRating(order) {
   return movieList.sort((itemA, itemB) => {
-    return order === "highest"
+    return order.toLowerCase() === "highest"
       ? itemB.rating - itemA.rating
       : itemA.rating - itemB.rating;
   });
@@ -153,3 +161,10 @@ function displayMovies(movies) {
     heroSection.appendChild(noMoviesFoundPara);
   }
 }
+/* displayed movies on load */
+window.onload = async () => {
+  movieList = await getMovies();
+  displayMovies(movieList);
+  displayMoviesByRating("Highest");
+  movieCategory();
+};

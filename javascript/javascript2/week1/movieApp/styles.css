@@ -66,12 +66,13 @@
   transform: scale(1.1);
   cursor: pointer;
 }
-.categoryUl li.active {
+.categoryUl li.active,
+button.active {
   color: rgb(237, 190, 190);
   cursor: pointer;
 }
 
-/* herosection */
+/* heroSection */
 .heroSection {
   display: flex;
   flex-wrap: wrap;
