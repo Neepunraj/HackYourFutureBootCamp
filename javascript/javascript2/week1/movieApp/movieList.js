@@ -4,8 +4,13 @@ async function getMovies() {
     const response = await fetch(
       "https://raw.githubusercontent.com/Neepunraj/neepunraj.github.io/refs/heads/main/movies.json"
     );
-    return response.json();
+    movieList = response.json();
+
+    return movieList;
   } catch (err) {
     console.log(err);
   }
+}
+function getMoviesByCategory(category) {
+  return movieList.filter((movie) => movie.genre === category);
 }

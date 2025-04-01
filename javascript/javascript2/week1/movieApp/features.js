@@ -7,6 +7,7 @@ function getMovieCard(movie) {
   /* image */
   const heroImage = document.createElement("img");
   heroImage.setAttribute("class", "heroImage");
+  heroImage.setAttribute("loading", "lazy");
 
   heroImage.src = movie.poster_url;
   cardContainer.appendChild(heroImage);
@@ -109,24 +110,16 @@ function getMovieCard(movie) {
   return cardContainer;
 }
 
-/* function for search event */
+/* function for search event and  optimized */
 async function handleSearch() {
-  movieList = await getMovies();
   const searchedInput = searchBox.value.toLocaleLowerCase();
   const searchedMovie = movieList.filter(
     (movie) => movie.title.toLowerCase() === searchedInput
   );
   displayMovies(searchedMovie);
 }
-
-async function getMoviesByCategory(category) {
-  movieList = await getMovies();
-  return movieList.filter((movie) => movie.genre === category);
-}
-
+/* optimisation here */
 async function getMovieCategoryListByGenre() {
-  movieList = await getMovies();
-
   const genreList = movieList.map((item) => item.genre);
   const uniqueGenre = ["All"]; /* by default all is there */
   genreList.forEach((genre) => {
