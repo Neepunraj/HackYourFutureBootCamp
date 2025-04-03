@@ -138,3 +138,18 @@ function handleClickCardContainer(cardContainer) {
     alert(` You took ${min}:${sec} sec to select a movie : ${movieTitle}`);
   }
 }
+/* implementing additional feature  */
+const sectionDiv = document.createElement("section");
+function createSmallCard() {
+  const smallCard = document.createElement("div");
+  smallCard.setAttribute("class", "smallCard");
+  const aLink = document.createElement("a");
+  const h1 = document.createElement("h2");
+  h1.innerText = "Additional features";
+  aLink.appendChild(h1);
+  smallCard.appendChild(aLink);
+  sectionDiv.appendChild(smallCard);
+}
+createSmallCard();
+
+mainApp.appendChild(sectionDiv);
