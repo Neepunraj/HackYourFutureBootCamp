@@ -24,6 +24,9 @@
   width: 300px;
   height: 40px;
 }
+h1 {
+  color: rgba(70, 25, 25, 0.8);
+}
 .searchButton {
   background-color: rgba(70, 25, 25, 0.8);
   color: white;
