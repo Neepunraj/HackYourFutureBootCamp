@@ -102,7 +102,7 @@ function getMovieCard(movie) {
   }
   /* added eventListener */
   cardContainer.addEventListener("click", () =>
-    handleClickCardContainer(cardContainer)
+    handleClickCardContainer(movie)
   );
 
   detailsDiv.appendChild(ratingsDiv);
@@ -110,6 +110,36 @@ function getMovieCard(movie) {
   return cardContainer;
 }
 
+function createSmallMovieCard(movie) {
+  const smallCard = document.createElement("div");
+  smallCard.setAttribute("class", "smallCard");
+  const imageContainer = document.createElement("div");
+  imageContainer.setAttribute("class", "imageContainer");
+  smallCard.appendChild(imageContainer);
+
+  const poster = document.createElement("img");
+  poster.src = movie.poster_url;
+  poster.setAttribute("class", "smallCardPoster");
+  poster.setAttribute("loading", "lazy");
+
+  const title = document.createElement("h3");
+  title.innerText = movie.title;
+  title.setAttribute("class", "title");
+  const year = document.createElement("p");
+  year.innerText = `${movie.movie_year}`;
+  year.setAttribute("class", "year");
+  const price = document.createElement("p");
+  price.innerText = `${movie.price}kr.`;
+  price.setAttribute("class", "price");
+  const topTitle = document.createElement("div");
+  topTitle.setAttribute("class", "topTitle");
+  topTitle.append(year, price);
+  imageContainer.append(poster, title, topTitle);
+  smallCard.addEventListener("click", () => {
+    handleClickCardContainer(movie);
+  });
+  return smallCard;
+}
 /* function for search event and  optimized */
 async function handleSearch() {
   const searchedInput = searchBox.value.toLocaleLowerCase();
@@ -154,10 +184,43 @@ function displayMovies(movies) {
     heroSection.appendChild(noMoviesFoundPara);
   }
 }
+function moviesByYear() {
+  const sortedMoviesbyYear = movieList.sort(
+    (itemA, itemB) => itemB.movie_year - itemA.movie_year
+  );
+  return sortedMoviesbyYear;
+}
+function moviesbyHighRating() {
+  const sortedMoviesbyRating = movieList.sort(
+    (itemA, itemB) => itemB.rating - itemA.rating
+  );
+  return sortedMoviesbyRating;
+}
+function sciFiMovie() {
+  return movieList.filter(
+    (movie) => movie.genre.toLocaleLowerCase() === "sci-fi"
+  );
+}
 /* displayed movies on load */
 window.onload = async () => {
   movieList = await getMovies();
   displayMovies(movieList);
   displayMoviesByRating("Highest");
   movieCategory();
+  const sortMoviesByYear = moviesByYear();
+
+  sortMoviesByYear.forEach((movie) => {
+    const smallCard = createSmallMovieCard(movie);
+    recentlyAddedWrapper.appendChild(smallCard);
+  });
+  const moviesByRating = moviesbyHighRating();
+  moviesByRating.forEach((movie) => {
+    const smallCard = createSmallMovieCard(movie);
+    highratingWrapper.appendChild(smallCard);
+  });
+  const movieBySciFi = sciFiMovie();
+  movieBySciFi.forEach((movie) => {
+    const smallCard = createSmallMovieCard(movie);
+    scifiWrapper.appendChild(smallCard);
+  });
 };
