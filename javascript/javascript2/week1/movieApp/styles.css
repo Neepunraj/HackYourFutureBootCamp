@@ -194,8 +194,151 @@ button.active {
 .newPara2 {
   font-size: larger;
 }
+
 @media (max-width: 600px) {
   .headerUl {
     display: none;
   }
+}
+.sectionDiv {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  width: 100%;
+  scroll-behavior: smooth;
+  margin-top: 10px;
+}
+
+.sectionDiv::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.smallCard {
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  height: 150px;
+  min-width: 100px;
+}
+
+.smallCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.smallCardPoster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.8;
+  border-radius: 3px;
+  user-select: none;
+  color: transparent;
+}
+
+.year {
+  color: #edbe06;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.topTitle {
+  position: absolute;
+  top: 0;
+  background: rgba(219, 166, 166, 0.7);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 0 5px;
+  height: 30px;
+  align-items: center;
+  width: 100%;
+}
+
+.price {
+  color: #f50909;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.title {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+  text-wrap: wrap;
+}
+/* movie modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  top: 20%;
+  width: 300px;
+  max-height: 80%;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.close-button {
+  cursor: pointer;
+  color: red;
+  font-size: 24px;
+  float: right;
+}
+
+.modal-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+#modal-comment-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
 }

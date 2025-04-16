@@ -123,33 +123,129 @@ function update() {
   newPar.innerText = `${hrs}:${mins}:${sec}`;
 }
 
-function handleClickCardContainer(cardContainer) {
+function handleClickCardContainer(movie) {
+  console.log(movie);
   stop();
   if (timer) {
+    console.log(timer);
     const min = `${Math.floor((elapsedTime / (1000 * 60)) % 60)}`.padStart(
       2,
-      0
+      "0"
     );
-    const sec = `${Math.floor((elapsedTime / 1000) % 60)}`.padStart(2, 0);
-    const movieTitle = cardContainer.querySelector(
-      ".YearTitleContainer h3"
-    ).innerText;
-
-    alert(` You took ${min}:${sec} sec to select a movie : ${movieTitle}`);
+    const sec = `${Math.floor((elapsedTime / 1000) % 60)}`.padStart(2, "0");
+    console.log(elapsedTime);
+    const movieTitle = movie.title;
+    alert(`You took ${min}:${sec} sec to select a movie: ${movieTitle}`);
   }
+
+  let modal = document.getElementById("movie-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.setAttribute("id", "movie-modal");
+    modal.setAttribute("class", "modal");
+
+    const modalContent = document.createElement("div");
+    modalContent.setAttribute("class", "modal-content");
+
+    const closeButton = document.createElement("span");
+    closeButton.setAttribute("class", "close-button");
+    closeButton.innerText = "×";
+
+    modalContent.appendChild(closeButton);
+
+    const modalTitle = document.createElement("h2");
+    const modalDirector = document.createElement("p");
+    const modalDescription = document.createElement("p");
+    const modalActors = document.createElement("p");
+    const modalRating = document.createElement("p");
+
+    const commentLabel = document.createElement("label");
+    commentLabel.innerText = "Add a Review about this";
+    const commentInput = document.createElement("textarea");
+    commentInput.setAttribute("id", "modal-comment-input");
+    commentInput.setAttribute("rows", "4");
+    commentInput.setAttribute("placeholder", "Write your comment here...");
+
+    modalTitle.setAttribute("id", "modal-movie-title");
+    modalDirector.setAttribute("id", "modal-movie-director");
+    modalDescription.setAttribute("id", "modal-movie-description");
+    modalActors.setAttribute("id", "modal-movie-actors");
+    modalRating.setAttribute("id", "modal-movie-rating");
+
+    modalContent.append(
+      modalTitle,
+      modalDirector,
+      modalDescription,
+      modalActors,
+      modalRating,
+      commentLabel,
+      commentInput
+    );
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    closeButton.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  document.getElementById("modal-movie-title").innerText = movie.title;
+  document.getElementById(
+    "modal-movie-director"
+  ).innerText = `Director: ${movie.director}`;
+  document.getElementById("modal-movie-description").innerText =
+    movie.description;
+  document.getElementById(
+    "modal-movie-actors"
+  ).innerText = `Casts: ${movie.actors.join(", ")}`;
+  document.getElementById(
+    "modal-movie-rating"
+  ).innerText = `Current Rating: ${movie.rating}`;
+
+  modal.style.display = "block";
 }
 /* implementing additional feature  */
-const sectionDiv = document.createElement("section");
-function createSmallCard() {
-  const smallCard = document.createElement("div");
-  smallCard.setAttribute("class", "smallCard");
-  const aLink = document.createElement("a");
-  const h1 = document.createElement("h2");
-  h1.innerText = "Additional features";
-  aLink.appendChild(h1);
-  smallCard.appendChild(aLink);
-  sectionDiv.appendChild(smallCard);
-}
-createSmallCard();
+const recentlyAdded = document.createElement("section");
+recentlyAdded.setAttribute("class", "sectionDiv");
 
-mainApp.appendChild(sectionDiv);
+const recentlyAddedWrapper = document.createElement("div");
+recentlyAddedWrapper.setAttribute("class", "wrapper");
+const recentlyTitle = document.createElement("h2");
+recentlyTitle.innerText = "Recently Added and Uploaded";
+recentlyAdded.appendChild(recentlyTitle);
+recentlyAdded.appendChild(recentlyAddedWrapper);
+
+mainApp.appendChild(recentlyAdded);
+
+/* high rating  */
+const highRating = document.createElement("section");
+highRating.setAttribute("class", "sectionDiv");
+
+const highratingWrapper = document.createElement("div");
+highratingWrapper.setAttribute("class", "wrapper");
+const highRatingTitle = document.createElement("h2");
+highRatingTitle.innerText = "Highly Rated ";
+highratingWrapper.appendChild(highRatingTitle);
+highRating.appendChild(highratingWrapper);
+
+mainApp.appendChild(highRating);
+
+/* sci-fi */
+const scifiMovie = document.createElement("section");
+scifiMovie.setAttribute("class", "sectionDiv");
+
+const scifiWrapper = document.createElement("div");
+scifiWrapper.setAttribute("class", "wrapper");
+const scifiTitle = document.createElement("h2");
+scifiTitle.innerText = "SciFi and Action";
+scifiWrapper.appendChild(scifiTitle);
+scifiMovie.appendChild(scifiWrapper);
+
+mainApp.appendChild(scifiMovie);
