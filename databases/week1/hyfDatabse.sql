@@ -150,8 +150,8 @@ select CONCAT(" Task: ", description , "-(Status :", status_id, ")") AS taskinfo
 
 select * from status
 
-select status.name, COUNT(task.id) as task_count from status left JOIN task on status.id = task.status_id GROUP BY status.name
+select status.name, COUNT(task.id) as task_count from status inner JOIN task on status.id = task.status_id GROUP BY status.name
 
 SELECT status.name , COUNT(task.id) as task_count from status
-RIGHT JOIN task on status.id = task.status_id 
+LEFT JOIN task on status.id = task.status_id 
 GROUP BY status.name ORDER BY task_count DESC
