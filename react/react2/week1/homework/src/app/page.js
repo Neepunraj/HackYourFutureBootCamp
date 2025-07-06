@@ -1,6 +1,8 @@
 "use client"
 import { useTheme } from "@/context/themeContext";
 import Counter from "./components/counter";
+import TodoItem from "./components/todoItem";
+import { TodoContextProvider } from "@/context/todoReducer";
 
 export default function Home() {
   const { isDark, toggleTheme } = useTheme()
@@ -9,6 +11,9 @@ export default function Home() {
       <h1>Hello, this is theme toggling demo in root page  </h1>
       <button onClick={toggleTheme} className={`${isDark ? "text-white " : ""} border rounded p-2`}>Toggle Theme</button>
       <Counter />
+      <TodoContextProvider>
+        <TodoItem />
+      </TodoContextProvider>
     </div>
   );
 }
